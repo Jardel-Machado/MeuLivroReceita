@@ -1,0 +1,15 @@
+﻿using MyRecipeBook.Domain.Repositories;
+
+namespace MyRecipeBook.Infrastructure.DataAccess;
+public class UnitOfWork : IUnitOfWork
+{
+    private readonly MyRecipeBookDbContext dbContext;
+    public UnitOfWork(MyRecipeBookDbContext dbContext)
+    {
+        this.dbContext = dbContext;
+    }
+    public async Task CommitAsync()
+    {
+        await dbContext.SaveChangesAsync();
+    }
+}
